@@ -10,17 +10,12 @@ public class TaskController {
     private TaskService taskService = new TaskService();
 
     public void runTasks(int[] ids) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<Task> tasks = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
 
-                for (Integer id : ids) {
-                    tasks.add(taskService.getTask(id));
-                }
+        for (Integer id : ids) {
+            tasks.add(taskService.getTask(id));
+        }
 
-                taskService.runTasks(tasks);
-            }
-        }).start();
+        taskService.runTasks(tasks);
     }
 }
